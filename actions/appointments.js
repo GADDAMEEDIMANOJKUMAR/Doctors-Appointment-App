@@ -9,18 +9,14 @@ import { Vonage } from "@vonage/server-sdk";
 import { addDays, addMinutes, format, isBefore, endOfDay } from "date-fns";
 import { Auth } from "@vonage/auth";
 
-import fs from "fs";
-import path from "path";
 
-// Read private key from file
-const privateKey = fs.readFileSync(
-  path.join(process.cwd(), process.env.VONAGE_PRIVATE_KEY)
-);
+
+
 
 // Initialize Vonage Video API client
 const credentials = new Auth({
   applicationId: process.env.NEXT_PUBLIC_VONAGE_APPLICATION_ID,
-  privateKey: privateKey,
+  privateKey: process.env.VONAGE_PRIVATE_KEY,
 });
 const options = {};
 const vonage = new Vonage(credentials, options);
